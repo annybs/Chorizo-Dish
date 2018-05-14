@@ -1,0 +1,130 @@
+-- original bpm
+bps (100/60)
+
+-- pretty funky at 133 tho'
+bps (133/60)
+
+-- drums as fuck
+
+--d1 $ sound "house sn:2"
+
+d1 $ sound "wk wsn"
+
+d1 $ every 2 (density 2.5) $ sound "wk wsn"
+
+d1 $ smash 4 [2,3] $ every 2 (density 2.5) $ sound "wk wsn"
+
+-- mixed perc
+
+d2 $ density 2 $ sound (pick <$> "wper" <*> slow 8 (run 8))
+
+d2 $ iter 8 $ density 2 $ sound (pick <$> "wper" <*> slow 8 (run 8))
+  |+| speed "1.2"
+
+d2 $ brak $ iter 8 $ density 4 $ sound (pick <$> "wper" <*> slow 8 (run 8))
+  |+| speed "1.2"
+
+d2 $ brak $ iter 8 $ density 4 $ sound (pick <$> "wper" <*> slow 8 (run 8))
+  |+| speed ((+0.8) <$> slow 2.5 sinewave1)
+
+d2 $ rev . brak $ iter 8 $ density 4 $ sound (pick <$> "wper" <*> slow 8 (run 8))
+  |+| speed ((+0.8) <$> slow 2.5 sinewave1)
+
+d2 $ every 4 (rev . brak) $ iter 8 $ density 4 $ sound (pick <$> "wper" <*> slow 8 (run 8))
+  |+| speed ((+0.8) <$> slow 2.5 sinewave1)
+
+-- when perc needs to get funky
+
+d2 $ iter 3 $ density 2 $ sound (pick <$> "wper" <*> slow 8 (run 8))
+
+d2 $ superimpose (iter 3) $ density 2 $ sound (pick <$> "wper" <*> slow 8 (run 8))
+
+d2 $ every 5 rev $ superimpose (iter 3) $ density 2 $ sound (pick <$> "wper" <*> slow 8 (run 8))
+
+-- hats
+
+d6 $ sound "hh*8"
+
+d6 $ sound (pick <$> "hh*8" <*> slow 2 "0 3")
+
+d6 $ sound (pick <$> "hh*8" <*> density 3 "0 3")
+
+d6 $ every 2 (density 1.1) $ sound (pick <$> "hh*8" <*> density 3 "0 3")
+
+-- funky hats
+
+d6 $ sound "hh*6"
+
+d6 $ sound (pick <$> "hh*6" <*> slow 2 "0 3")
+
+d6 $ sound (pick <$> "hh*6" <*> density 5 "0 3")
+
+d6 $ sound (pick <$> "hh*6" <*> density 5 "[0 3]/2 0")
+
+d6 $ sound (pick <$> "hh*6" <*> density 5 "[0 3]/2")
+
+-- crystal
+
+d4 $ slow 8 $ sound "wcrys:4"
+
+d4 $ density 4 $ sound "wcrys"
+
+d4 $ density 3 $ sound (pick <$> "wcrys" <*> slow 4 (run 3))
+
+d4 $ density 3 $ sound (pick <$> "wcrys" <*> slow 4 (run 3))
+  |+| shape "0.6"
+  |+| vowel "o"
+
+d4 $ every 2 (density 2) $ density 3 $ sound (pick <$> "wcrys" <*> slow 4 (run 3))
+  |+| shape "0.6"
+  |+| vowel "e"
+
+d4 $ spread density [3,6] $ sound (pick <$> "wcrys" <*> slow 4 (run 3))
+  |+| shape "0.6"
+  |+| vowel "o"
+
+-- bell
+
+d5 $ slow 8 $ sound "wbell"
+
+-- funky drums!!!!
+
+d3 $ sound "bd wsn"
+
+d3 $ sound "house*2"
+
+d3 $ stack [
+  sound "house*2",
+  0.5 ~> sound "wsn"
+  ]
+
+d7 $ sound "mt:3 wsn"
+
+d7 $ jux (iter 6) $ sound "mt:3 wper"
+
+d7 $ jux (iter 6) $ sound "mt:3 hh*2 wper"
+
+d7 $ jux (iter 6) $ sound "mt:3 hh*2 wper:6"
+
+d7 $ jux (iter 6) $ sound "wk:3 hh*2 wper:6"
+
+d7 $ jux (iter 3) $ stack [
+  density 2 $ sound (pick <$> "wper" <*> slow 3 ("2 4 6")),
+  sound "rm hh*2 wper"
+]
+
+d7 $ jux (iter 3) $ density 2 $ stack [
+  sound (pick <$> "wper" <*> slow 3 ("2 4 6")),
+  sound "rm hh*2 wper"
+]
+
+-- bass?
+
+d8 $ density 1.5 $ striate 4 $ sound "wobble"
+  |+| shape "0.5"
+
+d8 $ density 1.5 $ striate 4 $ sound "wobble"
+  |+| shape "0.5"
+
+d8 $ density 1.4 $ striate 4 $ sound "wobble"
+  |+| shape "0.5"

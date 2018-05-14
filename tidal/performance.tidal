@@ -1,0 +1,38 @@
+bps (133/60)
+
+d1 $ slow 8 $ stack [
+--  sound "wbell",
+  sound "wcrys:4"
+  ]
+
+d1 $ sound (pick <$> "wcrys" <*> slow 3 (run 3))
+  |+| vowel (slow 4 "a e i o")
+
+d2 $ every 4 (rev . brak) $ iter 8 $ density 2 $ sound (pick <$> "wper" <*> slow 8 (run 8))
+  |+| speed ((+0.8) <$> slow 2.5 sinewave1)
+
+d2 $ density 3 $ sound (pick <$> "wper" <*> slow 8 (run 8))
+  |+| speed ((+0.8) <$> slow 2.5 sinewave1)
+
+d3 $ every 2 (density 2.5) $ sound "wk wsn"
+
+d4 $ stack [
+  sound "house*2",
+  0.5 ~> sound "wsn"
+  ]
+
+d5 $ density 1.2 $ sound (pick <$> "hh*8" <*> density 3 "0 3")
+
+d6 $ sound "wk hh*2 wper:6" 
+
+d6 $ jux (iter 3) $ density 2 $ stack [
+  sound (pick <$> "wper" <*> slow 3 "2 4 6"),
+  sound "rm hh*2 wper"
+  ]
+
+d7 $ density 1.5 $ striate 4 $ sound "wobble"
+  |+| shape "0.6"
+
+-- chorizo dish
+-- recorded 13 march 2014 for fwonk "whispers" compilation
+-- song in emacs + tidal by anny fm (anny.fm, soundcloud.com/anny-fm)

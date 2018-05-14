@@ -1,0 +1,59 @@
+bps (133/60)
+
+-- bell, crystal [d1]
+
+d1 $ slow 8 $ stack [
+--  sound "wbell",
+  sound "wcrys:4"
+  ]
+
+d1 $ sound (pick <$> "wcrys" <*> slow 3 (run 3))
+  |+| vowel (slow 4 "a e i o")
+
+d1 $ density 4 $ sound "wcrys"
+  |+| vowel (slow 2 "e i")
+
+d1 $ density 3 $ sound "wcrys"
+  |+| shape "0.4"
+--  |+| vowel "o"
+
+-- percussion [d2]
+
+d2 $ every 4 (rev . brak) $ iter 8 $ density 2 $ sound (pick <$> "wper" <*> slow 8 (run 8))
+  |+| speed ((+0.8) <$> slow 2.5 sinewave1)
+
+d2 $ density 3 $ sound (pick <$> "wper" <*> slow 8 (run 8))
+  |+| speed ((+0.8) <$> slow 2.5 sinewave1)
+
+-- main drums [d3, d4]
+
+d3 $ every 2 (density 2.5) $ sound "wk wsn"
+
+d4 silence
+
+d4 $ stack [
+  sound "house*2",
+  0.5 ~> sound "wsn"
+  ]
+
+-- hats [d5]
+
+d1 silence
+d2 silence
+d4 silence
+
+d5 $ density 1.2 $ sound (pick <$> "hh*8" <*> density 3 "0 3")
+
+-- secondary drums [d6]
+
+d6 $ sound "wk hh*2 wper:6" 
+
+d6 $ jux (iter 3) $ density 2 $ stack [
+  sound (pick <$> "wper" <*> slow 3 "2 4 6"),
+  sound "rm hh*2 wper"
+  ]
+
+-- bass [d7]
+
+d7 $ density 1.5 $ striate 4 $ sound "wobble"
+  |+| shape "0.6"
